@@ -21,6 +21,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import cn.edu.tsinghua.proxytalk.Layout;
+import cn.edu.tsinghua.proxytalk.LayoutMap;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 import static android.content.Context.WINDOW_SERVICE;
@@ -104,6 +106,7 @@ public class MyExampleClass extends InteractionProxy {
     public static final String TAG  = "MyExampleClass";
     private Context context;
     private boolean autoJumpTried;
+    private Layout _layout;
 
     public static final boolean NEED_OVERLAY = false;
 
@@ -160,6 +163,15 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
+        if (_layout != null)
+            _layout.close();
+        _layout = LayoutMap.createLayout(newPageName);
+        if (_layout != null) {
+            _layout.onLoad();
+
+        }
+        Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
+
         if(Objects.equals(newPageName, "alipay_index")){
             AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
             while (crt != null){
@@ -196,6 +208,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageUpdate(String currentPageName, Map<String, List<AccessibilityNodeInfoRecord>> changeTypeToNodeList) {
+        if (_layout != null)
+            _layout.onChange(changeTypeToNodeList);
         Log.i(TAG, "page change");
         List<AccessibilityNodeInfoRecord> newCreated = changeTypeToNodeList.get(AccessibilityNodeInfoRecord.CHANGE_NEW_CREATED);
         if (newCreated != null) {
