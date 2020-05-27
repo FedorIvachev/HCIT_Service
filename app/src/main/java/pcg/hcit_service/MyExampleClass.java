@@ -190,6 +190,7 @@ public class MyExampleClass extends InteractionProxy {
                Utility.toast(context, "Enter Alipay", Toast.LENGTH_LONG);
                Map<String, String> paraValues = new ArrayMap<>();
                paraValues.put("列表朋友", "段续光");
+               paraValues.put("列表朋友", "韩红萍");
                // paraValues.put("联系人", "段续光");
                paraValues.put("转账金额", "0.01");
                 List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
