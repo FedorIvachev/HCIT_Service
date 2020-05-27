@@ -20,8 +20,6 @@ import java.util.concurrent.Future;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 
-
-
 public abstract class Layout {
     private SpeechSynthesizer _synthesizer;
     private SpeechRecognizer _recognizer;
@@ -88,20 +86,24 @@ public abstract class Layout {
         });
     }
 
-    public String proxyListenFEDYA() {
-        try {
-            Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
-            SpeechRecognitionResult result = task.get();
-            if (result.getReason() == ResultReason.RecognizedSpeech) {
-                return result.getText();
-            } else {
-                return "bad";
-                //return ("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
+    /**
+     * Listen to audio then run recognition service, eventually run a callback on success
+     * @param onSuccess callback to call if Azure succeeded, the callback receives the recognized text as a string
+     * @param onFailure callbacj to call if Azure failed, the callback receives the error message as a string
+     */
+    public void proxyListen(final ITaskCallback<String> onSuccess, final ITaskCallback<String> onFailure) {
+        Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
+        runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
+            @Override
+            public void run(SpeechRecognitionResult result) {
+                if (result.getReason() == ResultReason.RecognizedSpeech) {
+                    onSuccess.run(result.getText());
+                } else {
+                    onFailure.run(result.toString());
+                }
+                result.close();
             }
-        }  catch (Exception ex) {
-            Log.i("FEDYA", "unexpected " + ex.getMessage());
-            return "false";
-        }
+        });
     }
 
     /**
