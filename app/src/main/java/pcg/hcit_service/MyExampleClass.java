@@ -168,11 +168,10 @@ public class MyExampleClass extends InteractionProxy {
         _layout = LayoutMap.createLayout(newPageName);
         if (_layout != null) {
             _layout.onLoad();
-
         }
         Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
 
-        if(Objects.equals(newPageName, "alipay_index")){
+        if(Objects.equals(newPageName, "alipay_index0")){
             AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
             while (crt != null){
                 crt = crt.next(false);
@@ -189,7 +188,7 @@ public class MyExampleClass extends InteractionProxy {
             if(!autoJumpTried){
                Utility.toast(context, "Enter Alipay", Toast.LENGTH_LONG);
                Map<String, String> paraValues = new ArrayMap<>();
-               paraValues.put("列表朋友", "段续光");
+               //paraValues.put("列表朋友", "段续光");
                paraValues.put("列表朋友", "韩红萍");
                // paraValues.put("联系人", "段续光");
                paraValues.put("转账金额", "0.01");

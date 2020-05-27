@@ -1,5 +1,7 @@
 package cn.edu.tsinghua.proxytalk;
 
+import android.util.Log;
+
 import com.microsoft.cognitiveservices.speech.ResultReason;
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult;
@@ -18,6 +20,8 @@ import java.util.concurrent.Future;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 
+
+
 public abstract class Layout {
     private SpeechSynthesizer _synthesizer;
     private SpeechRecognizer _recognizer;
@@ -28,6 +32,7 @@ public abstract class Layout {
         _config = SpeechConfig.fromSubscription(AzureServices.API_KEY_1, AzureServices.REGION);
         _config.setSpeechSynthesisLanguage("zh-CN");
         _config.setSpeechSynthesisVoiceName("zh-CN-XiaoxiaoNeural"); // Comment this line for default voice (but I like this one more hhhh)
+        _config.setSpeechRecognitionLanguage("zh-CN");
         _synthesizer = new SpeechSynthesizer(_config);
         _recognizer = new SpeechRecognizer(_config);
         if (_service == null)
@@ -81,6 +86,22 @@ public abstract class Layout {
                 result.close();
             }
         });
+    }
+
+    public String proxyListenFEDYA() {
+        try {
+            Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
+            SpeechRecognitionResult result = task.get();
+            if (result.getReason() == ResultReason.RecognizedSpeech) {
+                return result.getText();
+            } else {
+                return "bad";
+                //return ("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
+            }
+        }  catch (Exception ex) {
+            Log.i("FEDYA", "unexpected " + ex.getMessage());
+            return "false";
+        }
     }
 
     /**
