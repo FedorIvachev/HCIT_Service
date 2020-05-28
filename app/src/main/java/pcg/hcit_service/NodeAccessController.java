@@ -326,7 +326,7 @@ public class NodeAccessController {
     /**
      * call back when jump according to list of {@link PageTemplateInfo.TransInfo} has finished
      */
-    interface JumpResCallBack {
+    public interface JumpResCallBack { // FEDOR
         /**
          *
          * @param successful true if all the steps in the given list has successfully finished

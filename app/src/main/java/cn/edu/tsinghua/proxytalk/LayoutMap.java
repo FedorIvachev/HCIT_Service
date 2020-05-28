@@ -29,6 +29,8 @@ public class LayoutMap {
         registerLayout("com.eg.android.AlipayGphone-178", Messages.class);
         //registerLayout("com.eg.android.AlipayGphone-62", Me.class);  // Layout not recognized properly
         registerLayout("com.eg.android.AlipayGphone-193", Dialog.class);
-
+        registerLayout("alipay_index", Alipay_Index.class);
+        registerLayout("com.eg.android.AlipayGphone-74", Alipay_74.class);
+        registerLayout("com.eg.android.AlipayGphone-70", Alipay_70.class);
     }
 }

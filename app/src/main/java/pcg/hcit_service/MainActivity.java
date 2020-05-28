@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Switch;
+
 
 public class MainActivity extends AppCompatActivity {
     public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 5469;
-
+    private Switch sView;
     @TargetApi(23)
     public void testOverlayPermission() {
         if (!Settings.canDrawOverlays(this)) {
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sView = (Switch) findViewById(R.id.switch1);
+        sView.setText("Set English");
+
         if (Build.VERSION.SDK_INT >= 23){
             testOverlayPermission();
         }

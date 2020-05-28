@@ -171,6 +171,7 @@ public class MyExampleClass extends InteractionProxy {
         }
         Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
 
+        // commented here to not autojump everytime
         if(Objects.equals(newPageName, "alipay_index0")){
             AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
             while (crt != null){

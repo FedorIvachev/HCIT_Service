@@ -1,9 +1,15 @@
 package cn.edu.tsinghua.proxytalk;
 
+import android.util.ArrayMap;
+import android.util.Log;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
+import pcg.hcit_service.NodeAccessController;
+import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Messages extends ActionDrivenLayout {
     private static final String GREETING = "Hello my friend, here are your messages";
@@ -41,6 +47,5 @@ public class Messages extends ActionDrivenLayout {
 
     @Override
     public void onListenSuccess(String result) {
-        //Called after testing and executing action if any
     }
 }
