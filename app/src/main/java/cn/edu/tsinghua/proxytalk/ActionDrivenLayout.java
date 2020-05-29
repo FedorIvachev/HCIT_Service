@@ -6,8 +6,11 @@ import pcg.hcit_service.MyExampleClass;
 
 public abstract class ActionDrivenLayout extends Layout {
 
+    private boolean _listening;
+
     public ActionDrivenLayout(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
+        _listening = false;
     }
 
     private static class Action {
@@ -68,6 +71,7 @@ public abstract class ActionDrivenLayout extends Layout {
      * Start listening for the next action
      */
     public void listen() {
+        _listening = true;
         proxyListen(new ITaskCallback<String>() {
             @Override
             public void run(String result) {
@@ -82,19 +86,39 @@ public abstract class ActionDrivenLayout extends Layout {
                 }
                 if (curAction != null && curRatio > _threshold)
                 {
+                    stopListen();
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;
                     curAction._function.run(res);
                 }
-                onListenSuccess(result);
+                internalListenSuccess(result);
             }
         }, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
-                onListenError(result);
+                internalListenError(result);
             }
         });
+    }
+
+    /**
+     * Call this function to stop listening
+     */
+    public void stopListen() {
+        _listening = false;
+    }
+
+    private void internalListenError(String message) {
+        onListenError(message);
+        if (_listening)
+            listen();
+    }
+
+    private void internalListenSuccess(String result) {
+        onListenSuccess(result);
+        if (_listening)
+            listen();
     }
 
     /**
