@@ -25,9 +25,9 @@ import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 public abstract class Layout {
-    private SpeechSynthesizer _synthesizer;
-    private SpeechRecognizer _recognizer;
-    private SpeechConfig _config;
+    private static SpeechSynthesizer _synthesizer;
+    private static SpeechRecognizer _recognizer;
+    private static SpeechConfig _config;
     private static ExecutorService _service;
     private String _lowLevelPageName;
     private MyExampleClass _context;
@@ -35,12 +35,15 @@ public abstract class Layout {
     public Layout(MyExampleClass context, String lowLevelPageName) {
         _lowLevelPageName = lowLevelPageName;
         _context = context;
-        _config = SpeechConfig.fromSubscription(AzureServices.API_KEY_1, AzureServices.REGION);
-        _config.setSpeechSynthesisLanguage("zh-CN");
-        _config.setSpeechSynthesisVoiceName("zh-CN-XiaoxiaoNeural"); // Comment this line for default voice (but I like this one more hhhh)
-        _config.setSpeechRecognitionLanguage("zh-CN");
-        _synthesizer = new SpeechSynthesizer(_config);
-        _recognizer = new SpeechRecognizer(_config);
+        if (_config == null)
+        {
+            _config = SpeechConfig.fromSubscription(AzureServices.API_KEY_1, AzureServices.REGION);
+            _config.setSpeechSynthesisLanguage("zh-CN");
+            _config.setSpeechSynthesisVoiceName("zh-CN-XiaoxiaoNeural"); // Comment this line for default voice (but I like this one more hhhh)
+            _config.setSpeechRecognitionLanguage("zh-CN");
+            _synthesizer = new SpeechSynthesizer(_config);
+            _recognizer = new SpeechRecognizer(_config);
+        }
         if (_service == null)
             _service = Executors.newCachedThreadPool();
     }
@@ -77,6 +80,7 @@ public abstract class Layout {
      * Call this function when this Layout is about to be terminated
      */
     public void close() {
+        // NOTE: Microsoft Azure Services library is so badly broken that it wants to be a memory leak and wants to use globals...
         //_recognizer.close();
         //_synthesizer.close();
         //_config.close();
