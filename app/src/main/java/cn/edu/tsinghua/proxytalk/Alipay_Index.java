@@ -79,8 +79,13 @@ public class Alipay_Index extends ActionDrivenLayout {
                 }, paraValues);*/
             }
         }, "messages", "show messages", "show friends", "看朋友");
-        listen(); //This calls Azure asynchronously
-        proxySpeak(GREETING);
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+            }
+        });
+        //listen(); //This calls Azure asynchronously
     }
 
     @Override

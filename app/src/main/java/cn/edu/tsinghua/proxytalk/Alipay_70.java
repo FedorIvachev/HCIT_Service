@@ -31,7 +31,13 @@ public class Alipay_70 extends ActionDrivenLayout {
             public void run(Result result) { //Called when the action is matched
 
                 //proxySpeak("That's too much for her");
-                proxySpeak("对她来说太多了");
+
+                proxySpeak("对她来说太多了", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        listen();
+                    }
+                });
 
 
             }
@@ -48,19 +54,17 @@ public class Alipay_70 extends ActionDrivenLayout {
                 //paraValues.put("列表朋友", "韩红萍");
                 // paraValues.put("联系人", "段续光");
                 paraValues.put("转账金额", "1.00");
-                List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
-                        70, 74, Collections.<PageTemplateInfo.TransInfo>emptySet(), Collections.<Integer>emptySet(),
-                        paraValues.keySet());
-                NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
-                    @Override
-                    public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
-                        Log.i(TAG, "onResult: res " + successful);
-                    }
-                }, paraValues);
+                switchPages("com.eg.android.AlipayGphone-74", null); //Whene there are no arguments you can pass null
+
             }
         }, "one", "1", "一");
-        listen(); //This calls Azure asynchronously
-        proxySpeak(GREETING);
+        //listen(); //This calls Azure asynchronously
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+            }
+        });
     }
 
     @Override
