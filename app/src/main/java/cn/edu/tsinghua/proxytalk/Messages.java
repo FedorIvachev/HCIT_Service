@@ -12,7 +12,7 @@ import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Messages extends ActionDrivenLayout {
-    private static final String GREETING = "Hello my friend, here are your messages";
+    private static final String GREETING = "";
 
     public Messages() {
     }
@@ -26,12 +26,14 @@ public class Messages extends ActionDrivenLayout {
                 proxySpeak(result.Command);
             }
         }, "hi");
+
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) { //Called when the action is matched
-                proxySpeak("Switch pages...");
+                proxySpeak(result.Command);
             }
-        }, "transfer money", "transfer money to", "give money", "give money to");
+        }, "hi");
+
         listen(); //This calls Azure asynchronously
         proxySpeak(GREETING);
     }
