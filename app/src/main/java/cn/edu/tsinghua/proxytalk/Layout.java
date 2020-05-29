@@ -29,6 +29,7 @@ public abstract class Layout {
     private static SpeechRecognizer _recognizer;
     private static SpeechConfig _config;
     private static ExecutorService _service;
+    private boolean _shouldBeRunning;
     private String _lowLevelPageName;
     private MyExampleClass _context;
 
@@ -46,6 +47,7 @@ public abstract class Layout {
         }
         if (_service == null)
             _service = Executors.newCachedThreadPool();
+        _shouldBeRunning = true;
     }
 
     /**
@@ -54,6 +56,8 @@ public abstract class Layout {
      * @param paraValues the switch parameters
      */
     public void switchPages(final String newPageName, Map<String, String> paraValues) {
+        if (!_shouldBeRunning)
+            return;
         String lastIndex = _lowLevelPageName.substring(_lowLevelPageName.lastIndexOf('-') + 1);
         final String packageName = _lowLevelPageName.substring(0, _lowLevelPageName.lastIndexOf('-'));
         int lastIndexInt = Integer.parseInt(lastIndex);
@@ -80,6 +84,7 @@ public abstract class Layout {
      * Call this function when this Layout is about to be terminated
      */
     public void close() {
+        _shouldBeRunning = false;
         // NOTE: Microsoft Azure Services library is so badly broken that it wants to be a memory leak and wants to use globals...
         //_recognizer.close();
         //_synthesizer.close();
@@ -91,6 +96,8 @@ public abstract class Layout {
      * @param text the text to speak
      */
     public void proxySpeak(String text) {
+        if (!_shouldBeRunning)
+            return;
         Future<SpeechSynthesisResult> task = _synthesizer.SpeakTextAsync(text);
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
@@ -111,6 +118,8 @@ public abstract class Layout {
      * @param onFinish callback to call when the application has finished speaking out the text
      */
     public void proxySpeak(final String text, final ITaskCallback<String> onFinish) {
+        if (!_shouldBeRunning)
+            return;
         Future<SpeechSynthesisResult> task = _synthesizer.SpeakTextAsync(text);
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
@@ -130,10 +139,14 @@ public abstract class Layout {
      * @param onSuccess callback to call if Azure succeeded, the callback receives the recognized text as a string
      */
     public void proxyListen(final ITaskCallback<String> onSuccess) {
+        if (!_shouldBeRunning)
+            return;
         Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
         runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
             @Override
             public void run(SpeechRecognitionResult result) {
+                if (!_shouldBeRunning)
+                    return;
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     onSuccess.run(result.toString());
                 } else {
@@ -150,10 +163,14 @@ public abstract class Layout {
      * @param onFailure callbacj to call if Azure failed, the callback receives the error message as a string
      */
     public void proxyListen(final ITaskCallback<String> onSuccess, final ITaskCallback<String> onFailure) {
+        if (!_shouldBeRunning)
+            return;
         Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
         runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
             @Override
             public void run(SpeechRecognitionResult result) {
+                if (!_shouldBeRunning)
+                    return;
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     onSuccess.run(result.getText());
                 } else {
@@ -171,9 +188,13 @@ public abstract class Layout {
      * @param <T> type of result
      */
     public <T> void runTask(final Future<T> task, final ITaskCallback<T> onComplete) {
+        if (!_shouldBeRunning)
+            return;
         _service.submit(new Runnable() {
             @Override
             public void run() {
+                if (!_shouldBeRunning)
+                    return;
                 T result = null;
                 try {
                     result = task.get();
