@@ -1,20 +1,25 @@
 package cn.edu.tsinghua.proxytalk;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+
+import pcg.hcit_service.MyExampleClass;
 
 public class LayoutMap {
 
     private static HashMap<String, Class<? extends Layout>> _map = new HashMap<>();
 
-    public static Layout createLayout(String pageId) {
+    public static Layout createLayout(MyExampleClass context, String pageId) {
         if (!_map.containsKey(pageId))
             return (null);
         Class<? extends Layout> cl = _map.get(pageId);
         if (cl == null)
             return (null);
         try {
-            return (cl.newInstance());
-        } catch (IllegalAccessException | InstantiationException e) {
+            Constructor<? extends Layout> constructor = cl.getConstructor(MyExampleClass.class, String.class);
+            return (constructor.newInstance(context, pageId));
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
             return (null);
         }

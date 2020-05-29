@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
+import pcg.hcit_service.MyExampleClass;
 
-public class Dialog extends Layout{
-    public static final String TAG  = "DialogClass";
+public class Dialog extends Layout {
+    private static final String TAG  = "DialogClass";
     private static final String GREETING = "Reading last message from:";
-    public Dialog() {}
+
+    public Dialog(MyExampleClass context, String lowLevelPageName) {
+        super(context, lowLevelPageName);
+    }
 
     @Override
     public void onLoad() {

@@ -8,13 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
+import pcg.hcit_service.MyExampleClass;
 import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Messages extends ActionDrivenLayout {
     private static final String GREETING = "";
 
-    public Messages() {
+    public Messages(MyExampleClass context, String lowLevelPageName) {
+        super(context, lowLevelPageName);
     }
 
     @Override

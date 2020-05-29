@@ -8,14 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
+import pcg.hcit_service.MyExampleClass;
 import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
-public class Alipay_Index extends ActionDrivenLayout{
+public class Alipay_Index extends ActionDrivenLayout {
     //private static String GREETING = "Hello I'm your slave. Who give money to?";
-    private static String GREETING = "你好，我是你的奴隶。 谁给钱？";
-    public static final String TAG  = "Alipay_IndexClass";
-    public Alipay_Index() {}
+    private static final String GREETING = "你好，我是你的奴隶。 谁给钱？";
+    private static final String TAG  = "Alipay_IndexClass";
+
+    public Alipay_Index(MyExampleClass context, String lowLevelPageName) {
+        super(context, lowLevelPageName);
+    }
 
     @Override
     public void onLoad() {
@@ -30,7 +34,6 @@ public class Alipay_Index extends ActionDrivenLayout{
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
-
                 //proxySpeak("Switching pages...");
                 proxySpeak("切换页面");
 
@@ -39,7 +42,8 @@ public class Alipay_Index extends ActionDrivenLayout{
                 paraValues.put("列表朋友", "韩红萍");
                 // paraValues.put("联系人", "段续光");
                 //paraValues.put("转账金额", "0.01");
-                List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
+                switchPages("com.eg.android.AlipayGphone-70", paraValues);
+                /*List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
                         0, 70, Collections.<PageTemplateInfo.TransInfo>emptySet(), Collections.<Integer>emptySet(),
                         paraValues.keySet());
                 NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
@@ -47,7 +51,7 @@ public class Alipay_Index extends ActionDrivenLayout{
                     public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
                         Log.i(TAG, "onResult: res " + successful);
                     }
-                }, paraValues);
+                }, paraValues);*/
             }
         }, "transfer money", "transfer money to", "give money", "give money to", "汇钱", "回", "给钱");
 
@@ -58,12 +62,13 @@ public class Alipay_Index extends ActionDrivenLayout{
                 //proxySpeak("Switching pages...");
                 //proxySpeak("切换页面");
 
-                Map<String, String> paraValues = new ArrayMap<>();
+                //Map<String, String> paraValues = new ArrayMap<>();
                 //paraValues.put("列表朋友", "段续光");
                 //paraValues.put("列表朋友", "韩红萍");
                 // paraValues.put("联系人", "段续光");
                 //paraValues.put("转账金额", "0.01");
-                List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
+                switchPages("com.eg.android.AlipayGphone-178", null); //Whene there are no arguments you can pass null
+                /*List<PageTemplateInfo.TransInfo> res = NodeAccessController.calTransitionPath("com.eg.android.AlipayGphone",
                         0, 178, Collections.<PageTemplateInfo.TransInfo>emptySet(), Collections.<Integer>emptySet(),
                         paraValues.keySet());
                 NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
@@ -71,7 +76,7 @@ public class Alipay_Index extends ActionDrivenLayout{
                     public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
                         Log.i(TAG, "onResult: res " + successful);
                     }
-                }, paraValues);
+                }, paraValues);*/
             }
         }, "messages", "show messages", "show friends", "看朋友");
         listen(); //This calls Azure asynchronously

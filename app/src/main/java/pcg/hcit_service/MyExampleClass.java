@@ -165,7 +165,7 @@ public class MyExampleClass extends InteractionProxy {
     public void onPageChange(String lastPageName, String newPageName) {
         if (_layout != null)
             _layout.close();
-        _layout = LayoutMap.createLayout(newPageName);
+        _layout = LayoutMap.createLayout(this, newPageName);
         if (_layout != null) {
             _layout.onLoad();
         }

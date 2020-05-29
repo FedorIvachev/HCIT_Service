@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
+import pcg.hcit_service.MyExampleClass;
 import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
-public class Alipay_70 extends ActionDrivenLayout{
+public class Alipay_70 extends ActionDrivenLayout {
     //private static String GREETING = "How Much?";
-    private static String GREETING = "多少钱？";
+    private static final String GREETING = "多少钱？";
     public static final String TAG  = "Alipay_IndexClass";
-    public Alipay_70() {}
+
+    public Alipay_70(MyExampleClass context, String lowLevelPageName) {
+        super(context, lowLevelPageName);
+    }
 
     @Override
     public void onLoad() {

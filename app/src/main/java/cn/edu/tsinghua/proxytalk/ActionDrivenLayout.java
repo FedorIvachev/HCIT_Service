@@ -2,7 +2,13 @@ package cn.edu.tsinghua.proxytalk;
 
 import java.util.ArrayList;
 
+import pcg.hcit_service.MyExampleClass;
+
 public abstract class ActionDrivenLayout extends Layout {
+
+    public ActionDrivenLayout(MyExampleClass context, String lowLevelPageName) {
+        super(context, lowLevelPageName);
+    }
 
     private static class Action {
         ITaskCallback<Result> _function;
