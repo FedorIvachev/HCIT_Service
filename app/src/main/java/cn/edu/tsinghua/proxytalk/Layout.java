@@ -77,9 +77,9 @@ public abstract class Layout {
      * Call this function when this Layout is about to be terminated
      */
     public void close() {
-        _recognizer.close();
-        _synthesizer.close();
-        _config.close();
+        //_recognizer.close();
+        //_synthesizer.close();
+        //_config.close();
     }
 
     /**
