@@ -31,10 +31,9 @@ public class LayoutMap {
 
     static {
         //Call registerLayout here (ex: registerLayout(pageid, MyLayout.class))
-        registerLayout("com.eg.android.AlipayGphone-178", Messages.class);
-        //registerLayout("com.eg.android.AlipayGphone-62", Me.class);  // Layout not recognized properly
-        registerLayout("com.eg.android.AlipayGphone-193", Dialog.class);
         registerLayout("com.eg.android.AlipayGphone-0", Alipay_Index.class);
+        registerLayout("com.eg.android.AlipayGphone-178", Alipay_178.class);
+        registerLayout("com.eg.android.AlipayGphone-193", Alipay_193.class);
         registerLayout("com.eg.android.AlipayGphone-74", Alipay_74.class);
         registerLayout("com.eg.android.AlipayGphone-70", Alipay_70.class);
         registerLayout("com.eg.android.AlipayGphone-134", Alipay_134.class);
