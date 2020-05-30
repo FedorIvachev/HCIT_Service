@@ -18,7 +18,6 @@ public class Alipay_70 extends ActionDrivenLayout {
     public static final String TAG  = "Alipay_IndexClass";
 
     public Alipay_70(MyExampleClass context, String lowLevelPageName) {
-
         super(context, lowLevelPageName);
     }
 
@@ -52,7 +51,13 @@ public class Alipay_70 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-74", paraValues);
             }
         }, "one", "1", "一");
-        listen();
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+                Log.i(TAG, "Greeting success_70");
+            }
+        });
     }
 
     @Override

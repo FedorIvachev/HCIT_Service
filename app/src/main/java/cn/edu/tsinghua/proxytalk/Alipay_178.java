@@ -12,13 +12,12 @@ import pcg.hcit_service.MyExampleClass;
 import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
-//Transer money confirm page
-public class Alipay_74 extends ActionDrivenLayout {
-    //private static String GREETING = "How Much?";
-    private static final String GREETING = "Use finger";
+public class Alipay_178 extends ActionDrivenLayout {
+    private static final String GREETING = "Your chats";
     public static final String TAG  = "Alipay_IndexClass";
 
-    public Alipay_74(MyExampleClass context, String lowLevelPageName) {
+
+    public Alipay_178(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
@@ -27,24 +26,15 @@ public class Alipay_74 extends ActionDrivenLayout {
         setThreshold(0.8f);
         registerAction(new ITaskCallback<Result>() {
             @Override
-            public void run(Result result) {
-                Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.eg.android.AlipayGphone-0", paraValues);
+            public void run(Result result) { //Called when the action is matched
+                proxySpeak(result.Command);
             }
-        }, "返回");
-        //activate_shouldBeRunning();
-        proxySpeak(GREETING, new ITaskCallback<String>() {
-            @Override
-            public void run(String result) {
-                listen();
-                Log.i(TAG, "Greeting success_74");
-            }
-        });
+        }, "hi");
+        //listen(); //This calls Azure asynchronously
     }
 
     @Override
     public void onChange(Map<String, List<AccessibilityNodeInfoRecord>> changeTypeToNodeList) {
-        activate_shouldBeRunning();
     }
 
     @Override

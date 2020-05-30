@@ -3,14 +3,11 @@ package cn.edu.tsinghua.proxytalk;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 //Transer money confirm page
 public class Alipay_134 extends ActionDrivenLayout {
@@ -30,7 +27,7 @@ public class Alipay_134 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-0", paraValues);
             }
         }, "返回");
-        listen();
+        //listen();
     }
 
     @Override

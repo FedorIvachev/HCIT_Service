@@ -1,5 +1,7 @@
 package cn.edu.tsinghua.proxytalk;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import pcg.hcit_service.MyExampleClass;
@@ -87,6 +89,7 @@ public abstract class ActionDrivenLayout extends Layout {
                 if (curAction != null && curRatio > _threshold)
                 {
                     stopListen();
+                    Log.i("Alipay_IndexClass", "NOT LISTENING");
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;

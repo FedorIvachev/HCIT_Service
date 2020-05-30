@@ -3,14 +3,11 @@ package cn.edu.tsinghua.proxytalk;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Alipay_Index extends ActionDrivenLayout {
     private static final String GREETING = "我能帮你";
@@ -54,10 +51,12 @@ public class Alipay_Index extends ActionDrivenLayout {
             }
         }, "transfer", "转账");
 
+        Log.i(TAG, "In Alipay Index");
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
+                Log.i(TAG, "Greeting success");
             }
         });
     }

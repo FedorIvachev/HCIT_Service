@@ -1,6 +1,7 @@
 package cn.edu.tsinghua.proxytalk;
 
 import android.util.ArrayMap;
+import android.util.Log;
 
 import com.microsoft.cognitiveservices.speech.ResultReason;
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
@@ -47,7 +48,7 @@ public abstract class Layout {
         }
         if (_service == null)
             _service = Executors.newCachedThreadPool();
-        _shouldBeRunning = true;
+        activate_shouldBeRunning();
     }
 
     /**
@@ -89,6 +90,7 @@ public abstract class Layout {
         //_recognizer.close();
         //_synthesizer.close();
         //_config.close();
+        activate_shouldBeRunning();
     }
 
     /**
@@ -163,8 +165,10 @@ public abstract class Layout {
      * @param onFailure callbacj to call if Azure failed, the callback receives the error message as a string
      */
     public void proxyListen(final ITaskCallback<String> onSuccess, final ITaskCallback<String> onFailure) {
-        if (!_shouldBeRunning)
+        if (!_shouldBeRunning) {
+            Log.i("Alipay_IndexClass", "Should not be running");
             return;
+        }
         Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
         runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
             @Override
@@ -204,5 +208,8 @@ public abstract class Layout {
                 onComplete.run(result);
             }
         });
+    }
+    public void activate_shouldBeRunning() {
+        _shouldBeRunning = true;
     }
 }
