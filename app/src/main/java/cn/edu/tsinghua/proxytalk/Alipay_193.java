@@ -70,9 +70,6 @@ public class Alipay_193 extends ActionDrivenLayout {
             if(crt != null)
                 Log.i(TAG, "prev: " + crt.toAllString());
         }
-
-
-
         listen(); //This calls Azure asynchronously
     }
 

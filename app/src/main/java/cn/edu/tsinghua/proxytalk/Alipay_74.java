@@ -35,12 +35,10 @@ public class Alipay_74 extends ActionDrivenLayout {
     public void onListenError(String message) {
         System.err.println("An error has occurred when running voice recognition: " + message);
         Log.i(TAG, "An error has occurred when running voice recognition: " + message);
-        listen();
     }
 
     @Override
     public void onListenSuccess(String result) {
         Log.i(TAG, "No error has occurred when running voice recognition: " + result);
-        listen();
     }
 }
