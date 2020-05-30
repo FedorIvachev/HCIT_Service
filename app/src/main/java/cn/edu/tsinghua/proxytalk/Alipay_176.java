@@ -3,21 +3,18 @@ package cn.edu.tsinghua.proxytalk;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
-public class Alipay_93 extends ActionDrivenLayout {
+public class Alipay_176 extends ActionDrivenLayout {
     private static String GREETING = "扫";
     public static final String TAG  = "Alipay_IndexClass";
 
-    public Alipay_93(MyExampleClass context, String lowLevelPageName) {
+    public Alipay_176(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
