@@ -76,5 +76,4 @@ public class Alipay_Index extends ActionDrivenLayout {
     public void onListenSuccess(String result) {
         Log.i(TAG, "No error has occurred when running voice recognition: " + result);
     }
-
 }
