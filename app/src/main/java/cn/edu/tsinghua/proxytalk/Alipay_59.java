@@ -1,23 +1,22 @@
+// 向商家付钱
+
 package cn.edu.tsinghua.proxytalk;
 
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
-public class Alipay_179 extends ActionDrivenLayout {
-    private static String GREETING = "收钱";
+public class Alipay_59 extends ActionDrivenLayout {
+    private static String GREETING = "扫";
     public static final String TAG  = "Alipay_IndexClass";
 
-    public Alipay_179(MyExampleClass context, String lowLevelPageName) {
+    public Alipay_59(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
@@ -31,11 +30,26 @@ public class Alipay_179 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-0", paraValues);
             }
         }, "返回");
+
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                proxySpeak("好的", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        listen();
+                    }
+                });
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.eg.android.AlipayGphone-60", paraValues);
+            }
+        }, "立即开启");
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_179");
+                Log.i(TAG, "Greeting success_2");
             }
         });
     }

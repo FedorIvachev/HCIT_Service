@@ -1,23 +1,21 @@
+// 转到银行卡 - Not finished
 package cn.edu.tsinghua.proxytalk;
 
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
-public class Alipay_179 extends ActionDrivenLayout {
-    private static String GREETING = "收钱";
+public class Alipay_143 extends ActionDrivenLayout {
+    private static String GREETING = "转到银行卡";
     public static final String TAG  = "Alipay_IndexClass";
 
-    public Alipay_179(MyExampleClass context, String lowLevelPageName) {
+    public Alipay_143(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
@@ -28,14 +26,14 @@ public class Alipay_179 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.eg.android.AlipayGphone-0", paraValues);
+                switchPages("com.eg.android.AlipayGphone-134", paraValues);
             }
         }, "返回");
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_179");
+                Log.i(TAG, "Greeting success_2");
             }
         });
     }
