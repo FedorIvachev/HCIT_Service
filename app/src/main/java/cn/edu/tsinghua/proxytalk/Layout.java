@@ -90,7 +90,7 @@ public abstract class Layout {
         //_recognizer.close();
         //_synthesizer.close();
         //_config.close();
-        activate_shouldBeRunning();
+        //activate_shouldBeRunning();
     }
 
     /**

@@ -31,10 +31,12 @@ public class LayoutMap {
 
     static {
         //Call registerLayout here (ex: registerLayout(pageid, MyLayout.class))
+        // Alipay pages
         registerLayout("com.eg.android.AlipayGphone-0", Alipay_Index.class);
         registerLayout("com.eg.android.AlipayGphone-2", Alipay_2.class);
         registerLayout("com.eg.android.AlipayGphone-32", Alipay_32.class);
         registerLayout("com.eg.android.AlipayGphone-42", Alipay_42.class);
+        registerLayout("com.eg.android.AlipayGphone-59", Alipay_59.class);
         registerLayout("com.eg.android.AlipayGphone-61", Alipay_61.class);
         registerLayout("com.eg.android.AlipayGphone-70", Alipay_70.class);
         registerLayout("com.eg.android.AlipayGphone-74", Alipay_74.class);
@@ -49,5 +51,15 @@ public class LayoutMap {
         registerLayout("com.eg.android.AlipayGphone-178", Alipay_178.class);
         registerLayout("com.eg.android.AlipayGphone-179", Alipay_179.class);
         registerLayout("com.eg.android.AlipayGphone-193", Alipay_193.class);
+        // WeChat Pages
+        registerLayout("com.tencent.mm-0", Wechat_0.class);
+        registerLayout("com.tencent.mm-1", Wechat_1.class);
+        registerLayout("com.tencent.mm-2", Wechat_2.class);
+        registerLayout("com.tencent.mm-3", Wechat_3.class);
+        registerLayout("com.tencent.mm-4", Wechat_4.class);
+        registerLayout("com.tencent.mm-12", Wechat_12.class);
+        registerLayout("com.tencent.mm-13", Wechat_13.class);
+        registerLayout("com.tencent.mm-15", Wechat_15.class);
+        registerLayout("com.tencent.mm-20", Wechat_20.class);
     }
 }
