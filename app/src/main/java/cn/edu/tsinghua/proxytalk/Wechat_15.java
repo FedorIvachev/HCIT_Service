@@ -12,7 +12,7 @@ import pcg.hcit_service.MyExampleClass;
 // Transfer money select amount page
 public class Wechat_15 extends ActionDrivenLayout {
     private static String GREETING = "消息";
-    public static final String TAG  = "Wechat_Voice";
+    public static final String TAG  = "VOICE_Assistant";
 
     public Wechat_15(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
@@ -37,6 +37,14 @@ public class Wechat_15 extends ActionDrivenLayout {
                 switchPages("com.tencent.mm-20", paraValues);
             }
         }, "你好", "发");
+
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-16", paraValues);
+            }
+        }, "更多功能");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override

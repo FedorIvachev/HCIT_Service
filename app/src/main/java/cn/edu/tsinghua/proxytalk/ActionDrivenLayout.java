@@ -59,12 +59,12 @@ public abstract class ActionDrivenLayout extends Layout {
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
-                StringBuilder toSay = new StringBuilder("You can ");
+                StringBuilder toSay = new StringBuilder("你可以说 ");
                 for (int i = 0; i != _actions.size(); ++i) {
                     Action a = _actions.get(i);
                     if (a._root) {
                         if (i + 1 == _actions.size()) {
-                            toSay.append(" or ").append(a._term);
+                            toSay.append(" 还可以说 ").append(a._term);
                         } else {
                             if (i == 0)
                                 toSay.append(a._term);
@@ -80,7 +80,7 @@ public abstract class ActionDrivenLayout extends Layout {
                     }
                 });
             }
-        }, "help");
+        }, "帮助");
     }
 
     /**
@@ -123,7 +123,7 @@ public abstract class ActionDrivenLayout extends Layout {
                 if (curAction != null && curRatio > _threshold)
                 {
                     stopListen();
-                    Log.i("Alipay_IndexClass", "NOT LISTENING");
+                    Log.i("VOICE_Assistant", "NOT LISTENING");
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;

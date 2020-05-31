@@ -12,7 +12,7 @@ import pcg.hcit_service.MyExampleClass;
 //Transer money confirm page
 public class Alipay_150 extends ActionDrivenLayout {
     private static final String GREETING = "beep";
-    public static final String TAG  = "Alipay_IndexClass";
+    public static final String TAG  = "VOICE_Assistant";
 
     public Alipay_150(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);

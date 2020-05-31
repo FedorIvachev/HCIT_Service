@@ -14,7 +14,7 @@ import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Alipay_178 extends ActionDrivenLayout {
     private static final String GREETING = "Your chats";
-    public static final String TAG  = "Alipay_IndexClass";
+    public static final String TAG  = "VOICE_Assistant";
 
 
     public Alipay_178(MyExampleClass context, String lowLevelPageName) {

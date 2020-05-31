@@ -170,7 +170,7 @@ public class MyExampleClass extends InteractionProxy {
             _layout.onLoad();
         }
         Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
-        Log.i("Alipay_IndexClass", "PAGE: " + newPageName);
+        Log.i("Wechat_", "PAGE: " + newPageName);
 
         // commented here to not autojump everytime
         if(Objects.equals(newPageName, "alipay_index0")){

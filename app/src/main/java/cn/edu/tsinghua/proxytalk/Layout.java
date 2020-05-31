@@ -166,7 +166,7 @@ public abstract class Layout {
      */
     public void proxyListen(final ITaskCallback<String> onSuccess, final ITaskCallback<String> onFailure) {
         if (!_shouldBeRunning) {
-            Log.i("Alipay_IndexClass", "Should not be running");
+            Log.i("VOICE_Assistant", "Should not be running");
             return;
         }
         Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();

@@ -3,37 +3,47 @@ package cn.edu.tsinghua.proxytalk;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
-import pcg.hcit_service.NodeAccessController;
-import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
-public class Alipay_32 extends ActionDrivenLayout {
-    private static String GREETING = "How Much?";
+public class Wechat_18 extends ActionDrivenLayout {
+    private static String GREETING = "实时位置";
     public static final String TAG  = "VOICE_Assistant";
 
-    public Alipay_32(MyExampleClass context, String lowLevelPageName) {
-
+    public Wechat_18(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
     @Override
     public void onLoad() {
         setThreshold(0.8f);
-        
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.eg.android.AlipayGphone-0", paraValues);
+                switchPages("com.tencent.mm-16", paraValues);
             }
         }, "返回");
-        listen();
+
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-16", paraValues);
+            }
+        }, "退出位置共享");
+
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+                Log.i(TAG, "Greeting success_18");
+            }
+        });
     }
 
     @Override

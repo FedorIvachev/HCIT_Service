@@ -11,7 +11,7 @@ import pcg.hcit_service.MyExampleClass;
 
 public class Alipay_Index extends ActionDrivenLayout {
     private static final String GREETING = "你好，需要什么服务？";
-    private static final String TAG  = "Alipay_IndexClass";
+    private static final String TAG  = "VOICE_Assistant";
 
     public Alipay_Index(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
