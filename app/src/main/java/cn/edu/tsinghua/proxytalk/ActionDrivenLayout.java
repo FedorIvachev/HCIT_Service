@@ -13,11 +13,13 @@ public abstract class ActionDrivenLayout extends Layout {
     public ActionDrivenLayout(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
         _listening = false;
+        registerHelpAction();
     }
 
     private static class Action {
         ITaskCallback<Result> _function;
         String _term;
+        boolean _root;
     }
 
     public static class Result {
@@ -41,12 +43,37 @@ public abstract class ActionDrivenLayout extends Layout {
      * @param aliases all possible text for this action separated by ','
      */
     public void registerAction(ITaskCallback<Result> function, String... aliases) {
+        boolean root = true;
         for (String s : aliases) {
             Action a = new Action();
             a._term = s;
             a._function = function;
+            a._root = root;
             _actions.add(a);
+            if (root)
+                root = false;
         }
+    }
+
+    private void registerHelpAction() {
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                StringBuilder toSay = new StringBuilder("You can ");
+                for (int i = 0; i != _actions.size(); ++i) {
+                    Action a = _actions.get(i);
+                    if (i + 1 == _actions.size()) {
+                        toSay.append(" or ").append(a._term);
+                    } else {
+                        if (i == 0)
+                            toSay.append(a._term);
+                        else
+                            toSay.append(", ").append(a._term);
+                    }
+                }
+                proxySpeak(toSay.toString());
+            }
+        }, "help");
     }
 
     /**
