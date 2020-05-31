@@ -60,6 +60,8 @@ public class Alipay_70 extends ActionDrivenLayout {
             }
         }, "返回");
 
+
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {

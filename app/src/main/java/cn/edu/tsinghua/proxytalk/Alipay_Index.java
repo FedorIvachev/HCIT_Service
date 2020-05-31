@@ -64,11 +64,12 @@ public class Alipay_Index extends ActionDrivenLayout {
                 Map<String, String> paraValues = new ArrayMap<>();
                 switchPages("com.eg.android.AlipayGphone-2", paraValues);
             }
-        }, "扫一扫", "扫", "打开扫一扫");        registerAction(new ITaskCallback<Result>() {
+        }, "扫一扫", "扫", "打开扫一扫");
+        registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.eg.android.AlipayGphone-2", paraValues);
+                switchPages("com.eg.android.AlipayGphone-61", paraValues);
             }
         }, "付钱", "打开付钱");
 
