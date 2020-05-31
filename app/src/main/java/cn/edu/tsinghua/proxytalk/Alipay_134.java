@@ -12,6 +12,8 @@ import pcg.hcit_service.MyExampleClass;
 //Transer money confirm page
 public class Alipay_134 extends ActionDrivenLayout {
     public static final String TAG  = "Alipay_IndexClass";
+    private static String GREETING = "转账";
+
 
     public Alipay_134(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
@@ -27,7 +29,13 @@ public class Alipay_134 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-0", paraValues);
             }
         }, "返回");
-        //listen();
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+                Log.i(TAG, "Greeting success_134");
+            }
+        });
     }
 
     @Override

@@ -51,6 +51,14 @@ public class Alipay_Index extends ActionDrivenLayout {
             }
         }, "transfer", "转账");
 
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.eg.android.AlipayGphone-93", paraValues);
+            }
+        }, "充值");
+
         Log.i(TAG, "In Alipay Index");
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
