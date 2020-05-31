@@ -73,7 +73,12 @@ public abstract class ActionDrivenLayout extends Layout {
                         }
                     }
                 }
-                proxySpeak(toSay.toString());
+                proxySpeak(toSay.toString(), new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        listen();
+                    }
+                });
             }
         }, "help");
     }

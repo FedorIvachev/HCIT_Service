@@ -46,7 +46,7 @@ public class Wechat_0 extends ActionDrivenLayout {
                 Map<String, String> paraValues = new ArrayMap<>();
                 switchPages("com.tencent.mm-3", paraValues);
             }
-        }, "我", "打开我");
+        }, "打开我");
 
         registerAction(new ITaskCallback<Result>() {
             @Override
