@@ -51,6 +51,15 @@ public class Alipay_70 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-74", paraValues);
             }
         }, "one", "1", "一");
+
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.eg.android.AlipayGphone-0", paraValues);
+            }
+        }, "返回");
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {

@@ -10,7 +10,7 @@ import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
 
 public class Alipay_Index extends ActionDrivenLayout {
-    private static final String GREETING = "我能帮你";
+    private static final String GREETING = "你好，需要什么服务？";
     private static final String TAG  = "Alipay_IndexClass";
 
     public Alipay_Index(MyExampleClass context, String lowLevelPageName) {
@@ -42,14 +42,14 @@ public class Alipay_Index extends ActionDrivenLayout {
             public void run(ActionDrivenLayout.Result result) {
                 switchPages("com.eg.android.AlipayGphone-178", null);
             }
-        }, "messages", "show messages", "show friends", "看朋友");
+        }, "messages", "show messages", "show friends", "看朋友", "打开朋友");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) {
                 switchPages("com.eg.android.AlipayGphone-134", null);
             }
-        }, "transfer", "转账");
+        }, "transfer", "转账", "打开转账");
 
         registerAction(new ITaskCallback<Result>() {
             @Override
@@ -57,14 +57,20 @@ public class Alipay_Index extends ActionDrivenLayout {
                 Map<String, String> paraValues = new ArrayMap<>();
                 switchPages("com.eg.android.AlipayGphone-93", paraValues);
             }
-        }, "充值");
+        }, "充值", "打开充值");
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
                 switchPages("com.eg.android.AlipayGphone-2", paraValues);
             }
-        }, "扫一扫", "扫");
+        }, "扫一扫", "扫", "打开扫一扫");        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.eg.android.AlipayGphone-2", paraValues);
+            }
+        }, "付钱", "打开付钱");
 
         Log.i(TAG, "In Alipay Index");
         proxySpeak(GREETING, new ITaskCallback<String>() {

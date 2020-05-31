@@ -42,6 +42,7 @@ public class LayoutMap {
         registerLayout("com.eg.android.AlipayGphone-93", Alipay_93.class);
         registerLayout("com.eg.android.AlipayGphone-134", Alipay_134.class);
         registerLayout("com.eg.android.AlipayGphone-143", Alipay_143.class);
+        registerLayout("com.eg.android.AlipayGphone-150", Alipay_150.class);
         registerLayout("com.eg.android.AlipayGphone-151", Alipay_151.class);
         registerLayout("com.eg.android.AlipayGphone-172", Alipay_172.class);
         registerLayout("com.eg.android.AlipayGphone-176", Alipay_176.class);
