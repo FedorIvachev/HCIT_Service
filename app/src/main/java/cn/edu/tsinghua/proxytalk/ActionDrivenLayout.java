@@ -62,13 +62,15 @@ public abstract class ActionDrivenLayout extends Layout {
                 StringBuilder toSay = new StringBuilder("You can ");
                 for (int i = 0; i != _actions.size(); ++i) {
                     Action a = _actions.get(i);
-                    if (i + 1 == _actions.size()) {
-                        toSay.append(" or ").append(a._term);
-                    } else {
-                        if (i == 0)
-                            toSay.append(a._term);
-                        else
-                            toSay.append(", ").append(a._term);
+                    if (a._root) {
+                        if (i + 1 == _actions.size()) {
+                            toSay.append(" or ").append(a._term);
+                        } else {
+                            if (i == 0)
+                                toSay.append(a._term);
+                            else
+                                toSay.append(", ").append(a._term);
+                        }
                     }
                 }
                 proxySpeak(toSay.toString());
