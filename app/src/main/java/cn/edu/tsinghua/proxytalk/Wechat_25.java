@@ -10,22 +10,23 @@ import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
 
 // Transfer money select amount page
-public class Wechat_3 extends ActionDrivenLayout {
-    private static String GREETING = "我";
+public class Wechat_25 extends ActionDrivenLayout {
+    private static String GREETING = "群收款";
     public static final String TAG  = "VOICE_Assistant";
 
-    public Wechat_3(MyExampleClass context, String lowLevelPageName) {
+    public Wechat_25(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
     @Override
     public void onLoad() {
         setThreshold(0.8f);
+
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-0", paraValues);
+                switchPages("com.tencent.mm-24", paraValues);
             }
         }, "返回");
 
@@ -33,23 +34,15 @@ public class Wechat_3 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-5", paraValues);
+                switchPages("com.tencent.mm-26", paraValues);
             }
-        }, "个人信息");
-
-        registerAction(new ITaskCallback<Result>() {
-            @Override
-            public void run(Result result) {
-                Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-23", paraValues);
-            }
-        }, "支付");
+        }, "发起收款");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_3");
+                Log.i(TAG, "Greeting success_25");
             }
         });
     }

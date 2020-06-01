@@ -37,6 +37,14 @@ public class Wechat_4 extends ActionDrivenLayout {
             }
         }, "添加朋友");
 
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-21", paraValues);
+            }
+        }, "扫一扫");
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
