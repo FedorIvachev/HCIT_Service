@@ -36,7 +36,31 @@ public class Wechat_1 extends ActionDrivenLayout {
                 paraValues.put("用户名", "Fedor 费杰");
                 switchPages("com.tencent.mm-12", paraValues);
             }
-        }, "发费杰", "发");
+        }, "发费杰");
+
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                proxySpeak("谁的？", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        proxyListen(new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                Map<String, String> paraValues = new ArrayMap<>();
+                                paraValues.put("用户名", result);
+                                switchPages("com.tencent.mm-12", paraValues);
+                            }
+                        }, new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                //
+                            }
+                        });
+                    }
+                });
+            }
+        }, "打开联系人页面");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override

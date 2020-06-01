@@ -30,6 +30,7 @@ public class Alipay_134 extends ActionDrivenLayout {
             }
         }, "返回");
 
+        /*
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
@@ -37,6 +38,31 @@ public class Alipay_134 extends ActionDrivenLayout {
                 Map<String, String> paraValues = new ArrayMap<>();
                 paraValues.put("列表朋友", "韩红萍");
                 switchPages("com.eg.android.AlipayGphone-70", paraValues);
+            }
+        }, "给钱");
+        */
+
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                proxySpeak("谁？", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        proxyListen(new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                Map<String, String> paraValues = new ArrayMap<>();
+                                paraValues.put("列表朋友", result);
+                                switchPages("com.eg.android.AlipayGphone-70", paraValues);
+                            }
+                        }, new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                //
+                            }
+                        });
+                    }
+                });
             }
         }, "给钱");
 

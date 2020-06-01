@@ -13,7 +13,6 @@ import pcg.hcit_service.MyExampleClass;
 public class Wechat_15 extends ActionDrivenLayout {
     private static String GREETING = "消息";
     public static final String TAG  = "VOICE_Assistant";
-    private Boolean recording_message = false;
 
     public Wechat_15(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
@@ -36,7 +35,6 @@ public class Wechat_15 extends ActionDrivenLayout {
                 proxySpeak("什么消息？", new ITaskCallback<String>() {
                     @Override
                     public void run(String result) {
-                        recording_message = true;
                         proxyListen(new ITaskCallback<String>() {
                                         @Override
                                         public void run(String result) {

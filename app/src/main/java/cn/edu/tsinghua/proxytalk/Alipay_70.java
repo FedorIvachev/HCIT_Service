@@ -14,7 +14,7 @@ import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
 public class Alipay_70 extends ActionDrivenLayout {
-    private static String GREETING = "How Much?";
+    private static String GREETING = "多少钱？";
     public static final String TAG  = "VOICE_Assistant";
 
     public Alipay_70(MyExampleClass context, String lowLevelPageName) {
@@ -52,6 +52,32 @@ public class Alipay_70 extends ActionDrivenLayout {
             }
         }, "one", "1", "一");
 
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                proxySpeak("多少钱？", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        proxyListen(new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                Map<String, String> paraValues = new ArrayMap<>();
+                                result = result.replaceAll("\\D+","");
+                                paraValues.put("转账金额", result + ".00");
+                                switchPages("com.eg.android.AlipayGphone-74", paraValues);
+                            }
+                        }, new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                //
+                            }
+                        });
+                    }
+                });
+            }
+        }, "传递");
+
+
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
@@ -59,7 +85,6 @@ public class Alipay_70 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-0", paraValues);
             }
         }, "返回");
-
 
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
