@@ -10,11 +10,11 @@ import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
 
 // Transfer money select amount page
-public class Wechat_30 extends ActionDrivenLayout {
-    private static String GREETING = "确定";
+public class Wechat_31 extends ActionDrivenLayout {
+    private static String GREETING = "提醒";
     public static final String TAG  = "VOICE_Assistant";
 
-    public Wechat_30(MyExampleClass context, String lowLevelPageName) {
+    public Wechat_31(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
@@ -26,40 +26,22 @@ public class Wechat_30 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-15", paraValues);
+                switchPages("com.tencent.mm-0", paraValues);
             }
-        }, "取消");
+        }, "返回");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
-                proxySpeak("谁的？", new ITaskCallback<String>() {
+                proxySpeak("什么名称？", new ITaskCallback<String>() {
                     @Override
                     public void run(String result) {
                         proxyListen(new ITaskCallback<String>() {
                             @Override
                             public void run(String result) {
-                                final String result1 = result;
-                                proxySpeak("钟点？", new ITaskCallback<String>() {
-                                    @Override
-                                    public void run(String result) {
-                                        proxyListen(new ITaskCallback<String>() {
-                                            @Override
-                                            public void run(String result2) {
-                                                Map<String, String> paraValues = new ArrayMap<>();
-                                                paraValues.put("日期", result1);
-                                                paraValues.put("钟点", result2);
-                                                switchPages("com.tencent.mm-15", paraValues);
-
-                                            }
-                                        }, new ITaskCallback<String>() {
-                                            @Override
-                                            public void run(String result) {
-                                                //
-                                            }
-                                        });
-                                    }
-                                });
+                                Map<String, String> paraValues = new ArrayMap<>();
+                                paraValues.put("群聊名称", result);
+                                switchPages("com.tencent.mm-32", paraValues);
                             }
                         }, new ITaskCallback<String>() {
                             @Override
@@ -70,13 +52,13 @@ public class Wechat_30 extends ActionDrivenLayout {
                     }
                 });
             }
-        }, "打开联系人页面");
+        }, "群聊名称");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_30");
+                Log.i(TAG, "Greeting success_29");
             }
         });
     }
