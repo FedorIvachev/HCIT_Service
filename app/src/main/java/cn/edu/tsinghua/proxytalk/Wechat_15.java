@@ -13,6 +13,7 @@ import pcg.hcit_service.MyExampleClass;
 public class Wechat_15 extends ActionDrivenLayout {
     private static String GREETING = "消息";
     public static final String TAG  = "VOICE_Assistant";
+    private Boolean recording_message = false;
 
     public Wechat_15(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
@@ -25,18 +26,34 @@ public class Wechat_15 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-12", paraValues);
+                switchPages("com.tencent.mm-0", paraValues);
             }
         }, "返回");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
-                Map<String, String> paraValues = new ArrayMap<>();
-                paraValues.put("文本信息内容", "你好");
-                switchPages("com.tencent.mm-20", paraValues);
+                proxySpeak("什么消息？", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        recording_message = true;
+                        proxyListen(new ITaskCallback<String>() {
+                                        @Override
+                                        public void run(String result) {
+                                            Map<String, String> paraValues = new ArrayMap<>();
+                                            paraValues.put("文本信息内容", result);
+                                            switchPages("com.tencent.mm-20", paraValues);
+                                        }
+                                    }, new ITaskCallback<String>() {
+                            @Override
+                            public void run(String result) {
+                                //
+                            }
+                        });
+                    }
+                });
             }
-        }, "你好", "发");
+        }, "发消息");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override

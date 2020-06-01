@@ -57,9 +57,21 @@ public class LayoutMap {
         registerLayout("com.tencent.mm-2", Wechat_2.class);
         registerLayout("com.tencent.mm-3", Wechat_3.class);
         registerLayout("com.tencent.mm-4", Wechat_4.class);
+        registerLayout("com.tencent.mm-5", Wechat_5.class);
+        registerLayout("com.tencent.mm-6", Wechat_6.class);
+        registerLayout("com.tencent.mm-7", Wechat_7.class);
+        registerLayout("com.tencent.mm-8", Wechat_8.class);
+        registerLayout("com.tencent.mm-9", Wechat_9.class);
+        registerLayout("com.tencent.mm-10", Wechat_10.class);
+        registerLayout("com.tencent.mm-11", Wechat_11.class);
         registerLayout("com.tencent.mm-12", Wechat_12.class);
         registerLayout("com.tencent.mm-13", Wechat_13.class);
+        registerLayout("com.tencent.mm-14", Wechat_14.class);
         registerLayout("com.tencent.mm-15", Wechat_15.class);
+        registerLayout("com.tencent.mm-16", Wechat_16.class);
+        registerLayout("com.tencent.mm-17", Wechat_17.class);
+        registerLayout("com.tencent.mm-18", Wechat_18.class);
+        registerLayout("com.tencent.mm-19", Wechat_19.class);
         registerLayout("com.tencent.mm-20", Wechat_20.class);
     }
 }
