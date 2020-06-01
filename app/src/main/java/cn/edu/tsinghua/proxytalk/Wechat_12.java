@@ -41,6 +41,14 @@ public class Wechat_12 extends ActionDrivenLayout {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
                 Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-36", paraValues);
+            }
+        }, "设置备注和标签");
+
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                Map<String, String> paraValues = new ArrayMap<>();
                 switchPages("com.tencent.mm-13", paraValues);
             }
         }, "音视频通话");

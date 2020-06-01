@@ -45,6 +45,14 @@ public class Wechat_3 extends ActionDrivenLayout {
             }
         }, "支付");
 
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-38", paraValues);
+            }
+        }, "设置");
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {

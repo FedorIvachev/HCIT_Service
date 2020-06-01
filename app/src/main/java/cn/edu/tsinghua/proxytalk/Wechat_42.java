@@ -10,11 +10,11 @@ import pcg.hcit_service.AccessibilityNodeInfoRecord;
 import pcg.hcit_service.MyExampleClass;
 
 // Transfer money select amount page
-public class Wechat_32 extends ActionDrivenLayout {
-    private static String GREETING = "群聊";
+public class Wechat_42 extends ActionDrivenLayout {
+    private static String GREETING = "应急联系人";
     public static final String TAG  = "VOICE_Assistant";
 
-    public Wechat_32(MyExampleClass context, String lowLevelPageName) {
+    public Wechat_42(MyExampleClass context, String lowLevelPageName) {
         super(context, lowLevelPageName);
     }
 
@@ -26,7 +26,7 @@ public class Wechat_32 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-0", paraValues);
+                switchPages("com.tencent.mm-39", paraValues);
             }
         }, "返回");
 
@@ -34,15 +34,15 @@ public class Wechat_32 extends ActionDrivenLayout {
             @Override
             public void run(Result result) {
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-33", paraValues);
+                switchPages("com.tencent.mm-12", paraValues);
             }
-        }, "聊天信息");
+        }, "返回");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_32");
+                Log.i(TAG, "Greeting success_42");
             }
         });
     }
