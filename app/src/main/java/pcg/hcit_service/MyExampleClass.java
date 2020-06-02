@@ -164,13 +164,13 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
-        if (_lowLevelPageName.equals(newPageName))
+        if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
             return;
         final AccessibilityNodeInfoRecord[] title = {null};
         Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
             @Override
             public void visitNode(AccessibilityNodeInfoRecord record) {
-                if(record != null && "android:id/text1".equals(String.valueOf(record.getViewIdResourceName()))){
+                if (record != null && "android:id/text1".equals(String.valueOf(record.getViewIdResourceName()))){
                     title[0] = record;
                 }
             }
