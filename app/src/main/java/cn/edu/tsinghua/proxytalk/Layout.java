@@ -73,7 +73,7 @@ public abstract class Layout {
         NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
             @Override
             public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
-                _context.onPageChange(_lowLevelPageName, newPageName);
+                _context.onPageChange(null, crtPageName);
             }
         }, paraValues);
     }

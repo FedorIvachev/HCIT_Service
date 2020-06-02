@@ -163,14 +163,25 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
+        final AccessibilityNodeInfoRecord[] title = {null};
+        Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
+            @Override
+            public void visitNode(AccessibilityNodeInfoRecord record) {
+                if(record != null && "android:id/text1".equals(String.valueOf(record.getViewIdResourceName()))){
+                    title[0] = record;
+                }
+            }
+        });
+        Utility.toast(context, newPageName + " " + (title[0] == null? "" : " #" + title[0].getText()), Toast.LENGTH_SHORT);
+
         if (_layout != null)
             _layout.close();
         _layout = LayoutMap.createLayout(this, newPageName);
         if (_layout != null) {
             _layout.onLoad();
         }
-        Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
-        Log.i("Wechat_", "PAGE: " + newPageName);
+        //Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
+        //Log.i("Wechat_", "PAGE: " + newPageName);
 
         // commented here to not autojump everytime
         if(Objects.equals(newPageName, "alipay_index0")){
