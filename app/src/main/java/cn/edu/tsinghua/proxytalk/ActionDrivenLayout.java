@@ -123,8 +123,8 @@ public abstract class ActionDrivenLayout extends Layout {
                 }
                 if (curAction != null && curRatio > _threshold)
                 {
-                    stopListen();
                     Log.i("VOICE_Assistant", "Action detected: " + curAction._term);
+                    stopListen();
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;
