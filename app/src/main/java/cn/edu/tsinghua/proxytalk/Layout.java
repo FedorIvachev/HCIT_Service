@@ -75,7 +75,7 @@ public abstract class Layout {
             public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
                 if (!_shouldBeRunning)
                     return;
-                _context.onPageChange(null, crtPageName);
+                _context.onPageChange(null, newPageName);
             }
         }, paraValues);
     }
