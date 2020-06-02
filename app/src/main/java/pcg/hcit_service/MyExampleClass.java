@@ -107,6 +107,7 @@ public class MyExampleClass extends InteractionProxy {
     private Context context;
     private boolean autoJumpTried;
     private Layout _layout;
+    private String _lowLevelPageName;
 
     public static final boolean NEED_OVERLAY = false;
 
@@ -163,6 +164,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
+        if (_lowLevelPageName.equals(newPageName))
+            return;
         final AccessibilityNodeInfoRecord[] title = {null};
         Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
             @Override
@@ -179,12 +182,13 @@ public class MyExampleClass extends InteractionProxy {
         _layout = LayoutMap.createLayout(this, newPageName);
         if (_layout != null) {
             _layout.onLoad();
+            _lowLevelPageName = newPageName;
         }
         //Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
         //Log.i("Wechat_", "PAGE: " + newPageName);
 
         // commented here to not autojump everytime
-        if(Objects.equals(newPageName, "alipay_index0")){
+        /*if(Objects.equals(newPageName, "alipay_index0")){
             AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
             while (crt != null){
                 crt = crt.next(false);
@@ -216,7 +220,7 @@ public class MyExampleClass extends InteractionProxy {
                    }
                }, paraValues);
            }
-        }
+        }*/
     }
 
     @Override
