@@ -180,8 +180,10 @@ public abstract class Layout {
             @Override
             public void run(SpeechRecognitionResult result) {
                 Log.i("VOICE_Assistant", "Listen callback called");
-                if (!_shouldBeRunning)
+                if (!_shouldBeRunning) {
+                    Log.i("VOICE_Assistant", "JVM garbage collected has failed!");
                     return;
+                }
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     Log.i("VOICE_Assistant", "Succeeded to listen");
                     onSuccess.run(result.getText());
