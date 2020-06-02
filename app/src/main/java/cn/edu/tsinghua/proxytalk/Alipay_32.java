@@ -33,7 +33,13 @@ public class Alipay_32 extends ActionDrivenLayout {
                 switchPages("com.eg.android.AlipayGphone-0", paraValues);
             }
         }, "返回");
-        listen();
+
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+            }
+        });
     }
 
     @Override

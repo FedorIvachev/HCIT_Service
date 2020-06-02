@@ -47,7 +47,6 @@ public class Alipay_74 extends ActionDrivenLayout {
 
     @Override
     public void onChange(Map<String, List<AccessibilityNodeInfoRecord>> changeTypeToNodeList) {
-        activate_shouldBeRunning();
     }
 
     @Override

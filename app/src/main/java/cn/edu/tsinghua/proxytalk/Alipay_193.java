@@ -51,7 +51,13 @@ public class Alipay_193 extends ActionDrivenLayout {
             if(crt != null)
                 Log.i(TAG, "prev: " + crt.toAllString());
         }
-        listen(); //This calls Azure asynchronously
+        proxySpeak(GREETING, new ITaskCallback<String>() {
+            @Override
+            public void run(String result) {
+                listen();
+                Log.i(TAG, "Greeting success_179");
+            }
+        });
     }
 
     @Override

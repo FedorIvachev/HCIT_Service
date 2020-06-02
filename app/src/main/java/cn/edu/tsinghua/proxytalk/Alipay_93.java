@@ -36,7 +36,6 @@ public class Alipay_93 extends ActionDrivenLayout {
             @Override
             public void run(String result) {
                 listen();
-                Log.i(TAG, "Greeting success_93");
             }
         });
     }

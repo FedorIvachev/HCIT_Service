@@ -42,7 +42,7 @@ public class Alipay_Index extends ActionDrivenLayout {
             public void run(ActionDrivenLayout.Result result) {
                 switchPages("com.eg.android.AlipayGphone-178", null);
             }
-        }, "messages", "show messages", "show friends", "看朋友", "打开朋友");
+        }, "打开朋友", "messages", "show messages", "show friends", "看朋友");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
