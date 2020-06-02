@@ -73,9 +73,9 @@ public abstract class Layout {
         NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
             @Override
             public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
-                if (!_shouldBeRunning)
-                    return;
-                _context.onPageChange(null, newPageName);
+                //if (!_shouldBeRunning)
+                //    return;
+                _context.onPageChange(_lowLevelPageName, newPageName);
             }
         }, paraValues);
     }
@@ -106,8 +106,8 @@ public abstract class Layout {
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
             public void run(SpeechSynthesisResult result) {
-                if (!_shouldBeRunning)
-                    return;
+                //if (!_shouldBeRunning)
+                //    return;
                 if (result.getReason() == ResultReason.Canceled) {
                     String err = SpeechSynthesisCancellationDetails.fromResult(result).toString();
                     System.err.println("Error synthesizing speach: " + err);
@@ -130,8 +130,8 @@ public abstract class Layout {
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
             public void run(SpeechSynthesisResult result) {
-                if (!_shouldBeRunning)
-                    return;
+                //if (!_shouldBeRunning)
+                //    return;
                 if (result.getReason() == ResultReason.Canceled) {
                     String err = SpeechSynthesisCancellationDetails.fromResult(result).toString();
                     System.err.println("Error synthesizing speach: " + err);
@@ -153,8 +153,8 @@ public abstract class Layout {
         runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
             @Override
             public void run(SpeechRecognitionResult result) {
-                if (!_shouldBeRunning)
-                    return;
+                //if (!_shouldBeRunning)
+                //    return;
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     onSuccess.run(result.toString());
                 } else {
@@ -180,10 +180,10 @@ public abstract class Layout {
             @Override
             public void run(SpeechRecognitionResult result) {
                 Log.i("VOICE_Assistant", "Listen callback called");
-                if (!_shouldBeRunning) {
-                    Log.i("VOICE_Assistant", "JVM garbage collected has failed!");
-                    return;
-                }
+                //if (!_shouldBeRunning) {
+                //    Log.i("VOICE_Assistant", "JVM garbage collected has failed!");
+                //    return;
+                //}
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     Log.i("VOICE_Assistant", "Succeeded to listen");
                     onSuccess.run(result.getText());
@@ -208,8 +208,8 @@ public abstract class Layout {
         _service.submit(new Runnable() {
             @Override
             public void run() {
-                if (!_shouldBeRunning)
-                    return;
+                //if (!_shouldBeRunning)
+                //    return;
                 T result = null;
                 try {
                     result = task.get();
