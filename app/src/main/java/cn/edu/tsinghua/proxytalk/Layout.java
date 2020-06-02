@@ -75,7 +75,8 @@ public abstract class Layout {
             public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
                 //if (!_shouldBeRunning)
                 //    return;
-                _context.onPageChange(_lowLevelPageName, newPageName);
+                //_context.onPageChange(_lowLevelPageName, newPageName);
+                _context.onPageChange(null, crtPageName);
             }
         }, paraValues);
     }
@@ -88,6 +89,7 @@ public abstract class Layout {
      */
     public void close() {
         _shouldBeRunning = false;
+        Log.i("VOICE_Assistant", "Layout close");
         // NOTE: Microsoft Azure Services library is so badly broken that it wants to be a memory leak and wants to use globals...
         //_recognizer.close();
         //_synthesizer.close();
@@ -180,8 +182,8 @@ public abstract class Layout {
             @Override
             public void run(SpeechRecognitionResult result) {
                 Log.i("VOICE_Assistant", "Listen callback called");
-                //if (!_shouldBeRunning)
-                //    return;
+                if (!_shouldBeRunning)
+                    return;
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
                     Log.i("VOICE_Assistant", "Succeeded to listen");
                     onSuccess.run(result.getText());

@@ -169,8 +169,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
-        if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
-            return;
+        //if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
+        //    return;33
         final AccessibilityNodeInfoRecord[] title = {null};
         Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
             @Override
