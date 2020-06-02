@@ -35,6 +35,7 @@ public abstract class Layout {
     private MyExampleClass _context;
 
     public Layout(MyExampleClass context, String lowLevelPageName) {
+        _shouldBeRunning = true;
         _lowLevelPageName = lowLevelPageName;
         _context = context;
         if (_config == null)
@@ -48,7 +49,6 @@ public abstract class Layout {
         }
         if (_service == null)
             _service = Executors.newCachedThreadPool();
-        activate_shouldBeRunning();
     }
 
     /**
@@ -217,8 +217,5 @@ public abstract class Layout {
                 onComplete.run(result);
             }
         });
-    }
-    public void activate_shouldBeRunning() {
-        _shouldBeRunning = true;
     }
 }
