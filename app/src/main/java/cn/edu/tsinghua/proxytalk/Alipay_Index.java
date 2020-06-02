@@ -20,22 +20,16 @@ public class Alipay_Index extends ActionDrivenLayout {
     @Override
     public void onLoad() {
         setThreshold(0.8f);
-        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
-            @Override
-            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
-                proxySpeak(result.Command);
-            }
-        }, "hi");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
             public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
                 proxySpeak("多少钱？");
                 Map<String, String> paraValues = new ArrayMap<>();
-                paraValues.put("列表朋友", "韩红萍");
+                paraValues.put("列表朋友", "韩红萍"); // put a name of person here
                 switchPages("com.eg.android.AlipayGphone-70", paraValues);
             }
-        }, "transfer money", "transfer money to", "give money", "give money to", "汇钱", "给钱");
+        }, "testing", "transfer money", "transfer money to", "give money", "give money to");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
@@ -49,7 +43,7 @@ public class Alipay_Index extends ActionDrivenLayout {
             public void run(ActionDrivenLayout.Result result) {
                 switchPages("com.eg.android.AlipayGphone-134", null);
             }
-        }, "transfer", "转账", "打开转账");
+        }, "转账", "transfer", "打开转账");
 
         registerAction(new ITaskCallback<Result>() {
             @Override

@@ -57,8 +57,6 @@ public class Wechat_0 extends ActionDrivenLayout {
         }, "更多功能", "打开更多功能");
 
 
-
-
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {

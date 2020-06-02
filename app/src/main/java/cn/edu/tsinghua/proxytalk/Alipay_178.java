@@ -24,12 +24,6 @@ public class Alipay_178 extends ActionDrivenLayout {
     @Override
     public void onLoad() {
         setThreshold(0.8f);
-        registerAction(new ITaskCallback<Result>() {
-            @Override
-            public void run(Result result) { //Called when the action is matched
-                proxySpeak(result.Command);
-            }
-        }, "hi");
 
         registerAction(new ITaskCallback<Result>() {
             @Override

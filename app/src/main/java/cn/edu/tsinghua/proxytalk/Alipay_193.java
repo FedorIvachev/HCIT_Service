@@ -33,24 +33,37 @@ public class Alipay_193 extends ActionDrivenLayout {
             }
         }, "返回");
 
-
-        AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
-        int node_num = 0;
-        while (crt != null){
-            crt = crt.next(false);
-            node_num++;
-            if(crt != null) {
-                Log.i(TAG, "next: " + crt.toAllString());
-                if (node_num == 2) proxySpeak(crt.toAllString());
-                else if (node_num > 5 && crt.toAllString().charAt(0) != ' ' && crt.toAllString().charAt(0) != 'i') proxySpeak(crt.toAllString());
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
+                int node_num = 0;
+                while (crt != null){
+                    crt = crt.next(false);
+                    node_num++;
+                    if(crt != null) {
+                        Log.i(TAG, "next: " + crt.toAllString());
+                        if (node_num == 2) proxySpeak(crt.toAllString());
+                        else if (node_num > 5 && crt.toAllString().charAt(0) != ' ' && crt.toAllString().charAt(0) != 'i') proxySpeak(crt.toAllString());
+                    }
+                    //Log.i(TAG, "next: " + crt.toAllString());
+                }
+                crt = AccessibilityNodeInfoRecord.root.lastInSubTree();
+                while (crt != null){
+                    crt = crt.prev(false);
+                    if(crt != null)
+                        Log.i(TAG, "prev: " + crt.toAllString());
+                }
+                proxySpeak("结束了", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        listen();
+                        Log.i(TAG, "结束了");
+                    }
+                });
             }
-        }
-        crt = AccessibilityNodeInfoRecord.root.lastInSubTree();
-        while (crt != null){
-            crt = crt.prev(false);
-            if(crt != null)
-                Log.i(TAG, "prev: " + crt.toAllString());
-        }
+        }, "阅读消息");
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {

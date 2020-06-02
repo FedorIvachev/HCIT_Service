@@ -69,6 +69,34 @@ public class Wechat_15 extends ActionDrivenLayout {
             }
         }, "信息内容");
 
+        registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
+            @Override
+            public void run(ActionDrivenLayout.Result result) { //Called when the action is matched
+                AccessibilityNodeInfoRecord crt = AccessibilityNodeInfoRecord.root;
+                while (crt != null){
+                    crt = crt.next(false);
+                    if(crt != null)
+                        proxySpeak(crt.toAllString());
+                        //Log.i(TAG, "next: " + crt.toAllString());
+                }
+                crt = AccessibilityNodeInfoRecord.root.lastInSubTree();
+                while (crt != null){
+                    crt = crt.prev(false);
+                    if(crt != null)
+                        Log.i(TAG, "prev: " + crt.toAllString());
+                }
+                proxySpeak("结束了", new ITaskCallback<String>() {
+                    @Override
+                    public void run(String result) {
+                        listen();
+                        Log.i(TAG, "结束了");
+                    }
+                });
+            }
+        }, "阅读消息");
+
+
+
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
             public void run(String result) {
