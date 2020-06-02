@@ -14,3 +14,4 @@
 .cxx
 .idea/
 /app/src/main/assets
+/app/src/main/java/cn/edu/tsinghua/proxytalk/AzureServices.java
