@@ -73,6 +73,8 @@ public abstract class Layout {
         NodeAccessController.jumpByTransInfoList(res, new NodeAccessController.JumpResCallBack() {
             @Override
             public void onResult(boolean successful, String crtPageName, int successStep, PageTemplateInfo.TransInfo crt, List<PageTemplateInfo.TransInfo> oriPath, NodeAccessController.JumpFailReason reason) {
+                if (!_shouldBeRunning)
+                    return;
                 _context.onPageChange(null, crtPageName);
             }
         }, paraValues);
@@ -104,6 +106,8 @@ public abstract class Layout {
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
             public void run(SpeechSynthesisResult result) {
+                if (!_shouldBeRunning)
+                    return;
                 if (result.getReason() == ResultReason.Canceled) {
                     String err = SpeechSynthesisCancellationDetails.fromResult(result).toString();
                     System.err.println("Error synthesizing speach: " + err);
@@ -126,6 +130,8 @@ public abstract class Layout {
         runTask(task, new ITaskCallback<SpeechSynthesisResult>() {
             @Override
             public void run(SpeechSynthesisResult result) {
+                if (!_shouldBeRunning)
+                    return;
                 if (result.getReason() == ResultReason.Canceled) {
                     String err = SpeechSynthesisCancellationDetails.fromResult(result).toString();
                     System.err.println("Error synthesizing speach: " + err);
