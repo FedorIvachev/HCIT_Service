@@ -171,19 +171,22 @@ public abstract class Layout {
      * @param onFailure callbacj to call if Azure failed, the callback receives the error message as a string
      */
     public void proxyListen(final ITaskCallback<String> onSuccess, final ITaskCallback<String> onFailure) {
-        if (!_shouldBeRunning) {
-            Log.i("VOICE_Assistant", "Should not be running");
+        Log.i("VOICE_Assistant", "Start listening");
+        if (!_shouldBeRunning)
             return;
-        }
         Future<SpeechRecognitionResult> task = _recognizer.recognizeOnceAsync();
+        Log.i("VOICE_Assistant", "Running listen task");
         runTask(task, new ITaskCallback<SpeechRecognitionResult>() {
             @Override
             public void run(SpeechRecognitionResult result) {
+                Log.i("VOICE_Assistant", "Listen callback called");
                 if (!_shouldBeRunning)
                     return;
                 if (result.getReason() == ResultReason.RecognizedSpeech) {
+                    Log.i("VOICE_Assistant", "Succeeded to listen");
                     onSuccess.run(result.getText());
                 } else {
+                    Log.i("VOICE_Assistant", "Failure to listen");
                     onFailure.run(result.toString());
                 }
                 result.close();

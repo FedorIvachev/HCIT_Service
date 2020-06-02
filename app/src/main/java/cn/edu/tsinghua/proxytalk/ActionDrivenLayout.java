@@ -107,6 +107,7 @@ public abstract class ActionDrivenLayout extends Layout {
      * Start listening for the next action
      */
     public void listen() {
+        Log.i("VOICE_Assistant", "Start listening");
         _listening = true;
         proxyListen(new ITaskCallback<String>() {
             @Override
@@ -123,7 +124,7 @@ public abstract class ActionDrivenLayout extends Layout {
                 if (curAction != null && curRatio > _threshold)
                 {
                     stopListen();
-                    Log.i("VOICE_Assistant", "NOT LISTENING");
+                    Log.i("VOICE_Assistant", "Action detected: " + curAction._term);
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;
