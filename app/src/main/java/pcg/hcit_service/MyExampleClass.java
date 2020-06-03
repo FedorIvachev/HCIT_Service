@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -15,15 +14,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 import cn.edu.tsinghua.proxytalk.Layout;
 import cn.edu.tsinghua.proxytalk.LayoutMap;
-import pcg.hcit_service.Template.PageTemplateInfo;
+import cn.edu.tsinghua.proxytalk.provider.AndroidTextToSpeech;
+import cn.edu.tsinghua.proxytalk.provider.AzureSpeechToText;
+import cn.edu.tsinghua.proxytalk.provider.AzureTextToSpeech;
+import cn.edu.tsinghua.proxytalk.provider.ISpeechToTextProvider;
+import cn.edu.tsinghua.proxytalk.provider.ITextToSpeechProvider;
 
 import static android.content.Context.WINDOW_SERVICE;
 
@@ -109,6 +110,9 @@ public class MyExampleClass extends InteractionProxy {
     private Layout _layout;
     private String _lowLevelPageName;
 
+    private ITextToSpeechProvider _textToSpeech;
+    private ISpeechToTextProvider _speechToText;
+
     public static final boolean NEED_OVERLAY = false;
 
     OverlayController overlayController;
@@ -118,6 +122,16 @@ public class MyExampleClass extends InteractionProxy {
         if(NEED_OVERLAY){
             overlayController = new OverlayController(context);
         }
+        _textToSpeech = new AzureTextToSpeech();
+        _speechToText = new AzureSpeechToText();
+    }
+
+    public ISpeechToTextProvider getSpeechToTextProvider() {
+        return (_speechToText);
+    }
+
+    public ITextToSpeechProvider getTextToSpeechProvider() {
+        return (_textToSpeech);
     }
 
     @Override
@@ -127,7 +141,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onDestroy() {
-
+        _textToSpeech.close();
+        _speechToText.close();
     }
 
     @Override
@@ -169,8 +184,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
-        //if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
-        //    return;33
+        if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
+            return;
         final AccessibilityNodeInfoRecord[] title = {null};
         Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
             @Override
