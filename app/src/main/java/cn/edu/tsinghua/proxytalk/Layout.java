@@ -51,8 +51,7 @@ public abstract class Layout {
                     proxySpeak("不支持该操作。寻求帮助", new ITaskCallback<String>() {
                         @Override
                         public void run(String result) {
-                            //_shouldBeRunning = true;
-                            _context.onPageChange(_lowLevelPageName, _lowLevelPageName);
+                            onLoad();
                         }
                     });
                 }
