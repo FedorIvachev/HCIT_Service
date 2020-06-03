@@ -20,6 +20,7 @@ import java.util.Map;
 
 import cn.edu.tsinghua.proxytalk.Layout;
 import cn.edu.tsinghua.proxytalk.LayoutMap;
+import cn.edu.tsinghua.proxytalk.provider.AndroidTextToSpeech;
 import cn.edu.tsinghua.proxytalk.provider.AzureSpeechToText;
 import cn.edu.tsinghua.proxytalk.provider.AzureTextToSpeech;
 import cn.edu.tsinghua.proxytalk.provider.ISpeechToTextProvider;
@@ -121,7 +122,7 @@ public class MyExampleClass extends InteractionProxy {
         if(NEED_OVERLAY){
             overlayController = new OverlayController(context);
         }
-        _textToSpeech = new AzureTextToSpeech();
+        _textToSpeech = new AndroidTextToSpeech(context);
         _speechToText = new AzureSpeechToText();
     }
 
