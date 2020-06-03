@@ -76,7 +76,10 @@ public abstract class Layout {
                 //if (!_shouldBeRunning)
                 //    return;
                 //_context.onPageChange(_lowLevelPageName, newPageName);
-                _context.onPageChange(null, crtPageName);
+                if (successful) _context.onPageChange(null, crtPageName);
+                else {
+                    proxySpeak("不支持该操作。寻求帮助");
+                }
             }
         }, paraValues);
     }

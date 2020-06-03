@@ -36,7 +36,7 @@ public class Wechat_1 extends ActionDrivenLayout {
                 paraValues.put("用户名", "Fedor 费杰");
                 switchPages("com.tencent.mm-12", paraValues);
             }
-        }, "发外国人");
+        }, "外国人");
 
         registerAction(new ITaskCallback<ActionDrivenLayout.Result>() {
             @Override
