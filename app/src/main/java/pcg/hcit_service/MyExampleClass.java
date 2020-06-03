@@ -30,6 +30,10 @@ import java.util.concurrent.Executors;
 import cn.edu.tsinghua.proxytalk.AzureServices;
 import cn.edu.tsinghua.proxytalk.Layout;
 import cn.edu.tsinghua.proxytalk.LayoutMap;
+import cn.edu.tsinghua.proxytalk.provider.AzureSpeechToText;
+import cn.edu.tsinghua.proxytalk.provider.AzureTextToSpeech;
+import cn.edu.tsinghua.proxytalk.provider.ISpeechToTextProvider;
+import cn.edu.tsinghua.proxytalk.provider.ITextToSpeechProvider;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 import static android.content.Context.WINDOW_SERVICE;
@@ -114,7 +118,10 @@ public class MyExampleClass extends InteractionProxy {
     private Context context;
     private boolean autoJumpTried;
     private Layout _layout;
-    private String _lowLevelPageName;
+    //private String _lowLevelPageName;
+
+    private ITextToSpeechProvider _textToSpeech;
+    private ISpeechToTextProvider _speechToText;
 
     public static final boolean NEED_OVERLAY = false;
 
@@ -125,6 +132,16 @@ public class MyExampleClass extends InteractionProxy {
         if(NEED_OVERLAY){
             overlayController = new OverlayController(context);
         }
+        _textToSpeech = new AzureTextToSpeech();
+        _speechToText = new AzureSpeechToText();
+    }
+
+    public ISpeechToTextProvider getSpeechToTextProvider() {
+        return (_speechToText);
+    }
+
+    public ITextToSpeechProvider getTextToSpeechProvider() {
+        return (_textToSpeech);
     }
 
     @Override
@@ -134,6 +151,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onDestroy() {
+        _textToSpeech.close();
+        _speechToText.close();
     }
 
     @Override
@@ -193,7 +212,7 @@ public class MyExampleClass extends InteractionProxy {
         _layout = LayoutMap.createLayout(this, newPageName);
         if (_layout != null) {
             _layout.onLoad();
-            _lowLevelPageName = newPageName;
+            //_lowLevelPageName = newPageName;
         }
         //Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
         //Log.i("Wechat_", "PAGE: " + newPageName);
