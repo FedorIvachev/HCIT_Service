@@ -107,7 +107,7 @@ public class MyExampleClass extends InteractionProxy {
     private Context context;
     private boolean autoJumpTried;
     private Layout _layout;
-    //private String _lowLevelPageName;
+    private String _lowLevelPageName;
 
     private ITextToSpeechProvider _textToSpeech;
     private ISpeechToTextProvider _speechToText;
@@ -183,8 +183,8 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onPageChange(String lastPageName, String newPageName) {
-        //if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
-        //    return;33
+        if (_lowLevelPageName != null && _lowLevelPageName.equals(newPageName))
+            return;
         final AccessibilityNodeInfoRecord[] title = {null};
         Utility.Visitor.visit(AccessibilityNodeInfoRecord.root, new Utility.Visitor() {
             @Override
@@ -201,7 +201,7 @@ public class MyExampleClass extends InteractionProxy {
         _layout = LayoutMap.createLayout(this, newPageName);
         if (_layout != null) {
             _layout.onLoad();
-            //_lowLevelPageName = newPageName;
+            _lowLevelPageName = newPageName;
         }
         //Utility.toast(context, ("PAGE: " + newPageName), Toast.LENGTH_LONG);
         //Log.i("Wechat_", "PAGE: " + newPageName);
