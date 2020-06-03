@@ -7,4 +7,6 @@ public interface ISpeechToTextProvider {
     void listen(ITaskCallback<String> onSuccess);
     void listen(ITaskCallback<String> onSuccess, ITaskCallback<String> onFailure);
 
+    void close();
+
 }
