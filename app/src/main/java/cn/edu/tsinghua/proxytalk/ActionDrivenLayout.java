@@ -32,6 +32,11 @@ public abstract class ActionDrivenLayout extends Layout {
          * Stores the matched action alias
          */
         String MatchedAlias;
+
+        /**
+         * Stores the last index of action (end of the string)
+         */
+        int ParaVal;
     }
 
     private ArrayList<Action> _actions = new ArrayList<>();
@@ -91,16 +96,15 @@ public abstract class ActionDrivenLayout extends Layout {
         _threshold = threshold;
     }
 
-    private float calcRatio(String a, String b) {
+    private int calcIdentical(String a, String b) {
         int identical = 0;
-        int total = a.length();
 
         for (int i = 0; i != a.length(); ++i) {
             if (i < b.length() && a.charAt(i) == b.charAt(i)) {
                 ++identical;
             }
         }
-        return ((float)identical / (float)total);
+        return identical;
     }
 
     /**
@@ -113,12 +117,14 @@ public abstract class ActionDrivenLayout extends Layout {
             @Override
             public void run(String result) {
                 float curRatio = 0;
+                int curIdentical = 0;
                 Action curAction = null;
                 for (Action a : _actions) {
-                    float ratio = calcRatio(a._term, result);
-                    if (curAction == null || ratio > curRatio) {
+                    int identical = calcIdentical(a._term, result);
+                    if (curAction == null || ( (float) identical / (float) a._term.length()) > curRatio) {
                         curAction = a;
-                        curRatio = ratio;
+                        curRatio = (float) identical / (float) a._term.length();
+                        curIdentical = identical;
                     }
                 }
                 if (curAction != null && curRatio > _threshold)
@@ -128,6 +134,7 @@ public abstract class ActionDrivenLayout extends Layout {
                     Result res = new Result();
                     res.Command = result;
                     res.MatchedAlias = curAction._term;
+                    res.ParaVal = curIdentical;
                     curAction._function.run(res);
                 }
                 internalListenSuccess(result);

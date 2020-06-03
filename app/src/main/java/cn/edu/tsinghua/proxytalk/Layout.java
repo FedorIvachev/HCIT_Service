@@ -76,9 +76,14 @@ public abstract class Layout {
                 //if (!_shouldBeRunning)
                 //    return;
                 //_context.onPageChange(_lowLevelPageName, newPageName);
-                if (successful) _context.onPageChange(null, crtPageName);
+                if (successful) _context.onPageChange(_lowLevelPageName, newPageName);
                 else {
-                    proxySpeak("不支持该操作。寻求帮助");
+                    proxySpeak("不支持该操作。寻求帮助", new ITaskCallback<String>() {
+                        @Override
+                        public void run(String result) {
+                            _shouldBeRunning = true;
+                        }
+                    });
                 }
             }
         }, paraValues);
