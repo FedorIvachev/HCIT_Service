@@ -10,7 +10,7 @@ import cn.edu.tsinghua.proxytalk.ITaskCallback;
 
 class AzureServices {
 
-    private static final String API_KEY_1 = "4e94b950693c4904a8a242523785f102";
+    private static final String API_KEY_1 = "<KEY here>";
     private static final String REGION = "eastus";
 
     private ExecutorService _service;
