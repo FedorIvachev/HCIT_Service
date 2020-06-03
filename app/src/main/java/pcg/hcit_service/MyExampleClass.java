@@ -15,12 +15,19 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.microsoft.cognitiveservices.speech.SpeechConfig;
+import com.microsoft.cognitiveservices.speech.SpeechRecognizer;
+import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import cn.edu.tsinghua.proxytalk.AzureServices;
 import cn.edu.tsinghua.proxytalk.Layout;
 import cn.edu.tsinghua.proxytalk.LayoutMap;
 import pcg.hcit_service.Template.PageTemplateInfo;
@@ -127,7 +134,6 @@ public class MyExampleClass extends InteractionProxy {
 
     @Override
     public void onDestroy() {
-
     }
 
     @Override
