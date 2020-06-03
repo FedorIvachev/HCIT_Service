@@ -59,10 +59,31 @@ public class Wechat_0 extends ActionDrivenLayout {
         registerAction(new ITaskCallback<Result>() {
             @Override
             public void run(Result result) {
+                String friend = result.Command.substring(result.ParaVal);
                 Map<String, String> paraValues = new ArrayMap<>();
-                switchPages("com.tencent.mm-4", paraValues);
+                paraValues.put("用户名", friend);
+                switchPages("com.tencent.mm-14", paraValues);
             }
-        }, "更多功能", "打开更多功能");
+        }, "语音通话给");
+
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                paraValues.put("用户名", "Fedor 费杰");
+                switchPages("com.tencent.mm-14", paraValues);
+            }
+        }, "打电话给朋友");
+
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                String friend = result.Command.substring(result.ParaVal);
+                Map<String, String> paraValues = new ArrayMap<>();
+                paraValues.put("用户名", friend);
+                switchPages("com.tencent.mm-15", paraValues);
+            }
+        }, "发消息给");
 
 
 
