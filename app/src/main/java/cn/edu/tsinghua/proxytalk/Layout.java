@@ -52,7 +52,7 @@ public abstract class Layout {
                         @Override
                         public void run(String result) {
                             //_shouldBeRunning = true;
-                            _context.onPageChange(_lowLevelPageName, _lowLevelPageName);
+
                         }
                     });
                 }
