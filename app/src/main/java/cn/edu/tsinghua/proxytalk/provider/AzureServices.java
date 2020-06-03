@@ -4,6 +4,7 @@ import com.microsoft.cognitiveservices.speech.SpeechConfig;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import cn.edu.tsinghua.proxytalk.ITaskCallback;
@@ -14,6 +15,10 @@ class AzureServices {
     private static final String REGION = "eastus";
 
     private ExecutorService _service;
+
+    AzureServices() {
+        _service = Executors.newCachedThreadPool();
+    }
 
     SpeechConfig createSpeechConfig() {
         SpeechConfig config = SpeechConfig.fromSubscription(API_KEY_1, REGION);
