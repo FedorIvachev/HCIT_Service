@@ -11,7 +11,7 @@ import pcg.hcit_service.MyExampleClass;
 
 // Transfer money select amount page
 public class Wechat_14 extends ActionDrivenLayout {
-    private static String GREETING = "语音通话";
+    private static String GREETING = "在语音通话";
     public static final String TAG  = "VOICE_Assistant";
 
     public Wechat_14(MyExampleClass context, String lowLevelPageName) {

@@ -14,7 +14,7 @@ import pcg.hcit_service.Template.PageTemplateInfo;
 
 // Transfer money select amount page
 public class Alipay_32 extends ActionDrivenLayout {
-    private static String GREETING = "How Much?";
+    private static String GREETING = "在How Much?";
     public static final String TAG  = "VOICE_Assistant";
 
     public Alipay_32(MyExampleClass context, String lowLevelPageName) {

@@ -14,7 +14,7 @@ import pcg.hcit_service.NodeAccessController;
 import pcg.hcit_service.Template.PageTemplateInfo;
 
 public class Alipay_193 extends ActionDrivenLayout {
-    private static final String GREETING = "Reading last message from:";
+    private static final String GREETING = "在Reading last message from:";
     public static final String TAG  = "VOICE_Assistant";
 
     public Alipay_193(MyExampleClass context, String lowLevelPageName) {

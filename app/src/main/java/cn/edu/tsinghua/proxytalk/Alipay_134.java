@@ -12,7 +12,7 @@ import pcg.hcit_service.MyExampleClass;
 //Transer money confirm page
 public class Alipay_134 extends ActionDrivenLayout {
     public static final String TAG  = "VOICE_Assistant";
-    private static String GREETING = "请选择转账账户";
+    private static String GREETING = "在请选择转账账户";
 
 
     public Alipay_134(MyExampleClass context, String lowLevelPageName) {
