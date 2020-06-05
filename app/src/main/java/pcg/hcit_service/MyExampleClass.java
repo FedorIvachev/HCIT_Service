@@ -123,6 +123,7 @@ public class MyExampleClass extends InteractionProxy {
             overlayController = new OverlayController(context);
         }
         _textToSpeech = new AzureTextToSpeech();
+        //_textToSpeech = new AndroidTextToSpeech(context);
         _speechToText = new AzureSpeechToText();
     }
 

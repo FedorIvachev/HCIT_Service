@@ -85,7 +85,22 @@ public class Wechat_0 extends ActionDrivenLayout {
             }
         }, "发消息给");
 
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                switchPages("com.tencent.mm-6", paraValues);
+            }
+        }, "二维码名片");
 
+        registerAction(new ITaskCallback<Result>() {
+            @Override
+            public void run(Result result) {
+                Map<String, String> paraValues = new ArrayMap<>();
+                paraValues.put("用户名", "Fedor 费杰");
+                switchPages("com.tencent.mm-17", paraValues);
+            }
+        }, "位置");
 
         proxySpeak(GREETING, new ITaskCallback<String>() {
             @Override
